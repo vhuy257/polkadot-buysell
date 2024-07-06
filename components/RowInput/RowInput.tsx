@@ -88,7 +88,7 @@ const RowInput = ({ user }: any) => {
             <input
               type="text"
               placeholder="Polkadot Price"
-              className={cn("input input-bordered input-sm w-full max-w-xs", {
+              className={cn("input input-bordered input-sm w-full md:max-w-xs", {
                 "input-error": fieldState.invalid,
               })}
               {...field}
@@ -105,7 +105,7 @@ const RowInput = ({ user }: any) => {
             <input
               type="text"
               placeholder="Usdt Amount"
-              className={cn("input input-bordered input-sm w-full max-w-xs", {
+              className={cn("input input-bordered input-sm w-full md:max-w-xs", {
                 "input-error": fieldState.invalid,
               })}
               {...field}
@@ -122,7 +122,7 @@ const RowInput = ({ user }: any) => {
             <input
               type="text"
               placeholder="Usdt Price"
-              className={cn("input input-bordered input-sm w-full max-w-xs", {
+              className={cn("input input-bordered input-sm w-full md:max-w-xs", {
                 "input-error": fieldState.invalid,
               })}
               {...field}
@@ -139,7 +139,7 @@ const RowInput = ({ user }: any) => {
             <input
               type="text"
               placeholder="Total VND"
-              className={cn("input input-bordered input-sm w-full max-w-xs", {
+              className={cn("input input-bordered input-sm w-full md:max-w-xs", {
                 "input-error": fieldState.invalid,
               })}
               {...field}

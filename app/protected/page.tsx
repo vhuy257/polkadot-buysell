@@ -21,12 +21,12 @@ export default async function ProtectedPage() {
   return (
     <div className="flex-1 w-full flex flex-col gap-20 items-center">
       <div className="w-full">
-        <div className="py-6 font-bold bg-purple-950 text-center text-white">
+        <div className="py-6 bg-purple-950 text-center text-white text-sm">
           This is a protected page that you can only see as an authenticated
           user
         </div>
-        <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16">
-          <div className="w-full max-w-5xl flex justify-between items-center py-3 text-sm">
+        <nav className="w-full flex justify-center h-16">
+          <div className="w-full max-w-5xl flex justify-between items-center py-3 text-sm flex-wrap px-3 md:px-0">
             <DeployButton />
             <AuthButton />
           </div>
