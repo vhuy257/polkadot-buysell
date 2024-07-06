@@ -57,20 +57,23 @@ const RowInput = ({ user }: any) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex gap-4 text-sm max-w-5xl"
+      className="flex flex-wrap md:flex-nowrap gap-4 text-sm max-w-5xl px-4 md:px-0"
     >
       <Controller
         name="dot_amount"
         control={control}
         rules={{ required: true }}
         render={({ field, fieldState }) => (
-          <div>
+          <div className="w-full">
             <input
               type="text"
               placeholder="Polkadot Amount"
-              className={cn("input input-bordered input-sm w-full max-w-xs", {
-                "input-error": fieldState.invalid,
-              })}
+              className={cn(
+                "input input-bordered input-sm w-full md:max-w-xs",
+                {
+                  "input-error": fieldState.invalid,
+                }
+              )}
               {...field}
             />
           </div>
@@ -81,7 +84,7 @@ const RowInput = ({ user }: any) => {
         control={control}
         rules={{ required: true }}
         render={({ field, fieldState }) => (
-          <div>
+          <div className="w-full">
             <input
               type="text"
               placeholder="Polkadot Price"
@@ -98,7 +101,7 @@ const RowInput = ({ user }: any) => {
         control={control}
         rules={{ required: true }}
         render={({ field, fieldState }) => (
-          <div>
+          <div className="w-full">
             <input
               type="text"
               placeholder="Usdt Amount"
@@ -115,7 +118,7 @@ const RowInput = ({ user }: any) => {
         control={control}
         rules={{ required: true }}
         render={({ field, fieldState }) => (
-          <div>
+          <div className="w-full">
             <input
               type="text"
               placeholder="Usdt Price"
@@ -132,7 +135,7 @@ const RowInput = ({ user }: any) => {
         control={control}
         rules={{ required: true }}
         render={({ field, fieldState }) => (
-          <div>
+          <div className="w-full">
             <input
               type="text"
               placeholder="Total VND"
@@ -152,7 +155,7 @@ const RowInput = ({ user }: any) => {
         </div>
       )}
       <button
-        className={cn("btn btn-sm", {
+        className={cn("btn btn-sm w-full md:w-auto", {
           "pointer-events-none": loading,
         })}
         type="submit"
