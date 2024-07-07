@@ -10,10 +10,13 @@ interface IFormInputs {
   usdt_amount: number;
   usdt_price: number;
   total_vnd: number;
+  type: "BUY" | "SELL";
 }
 
 const RowInput = ({ user }: any) => {
-  const { handleSubmit, control, reset } = useForm<IFormInputs>();
+  const { handleSubmit, control, reset } = useForm<IFormInputs>({
+    defaultValues: { type: 'BUY' }
+  });
   const supabase = createClient();
   const [loading, setLoading] = useState<Boolean>(false);
   const [toast, setToast] = useState("");
@@ -21,7 +24,7 @@ const RowInput = ({ user }: any) => {
   const onSubmit: SubmitHandler<IFormInputs> = async (formData: any) => {
     setLoading(true);
 
-    const { dot_amount, dot_price, usdt_amount, usdt_price, total_vnd } =
+    const { dot_amount, dot_price, usdt_amount, usdt_price, total_vnd, type } =
       formData;
     console.log(user);
 
@@ -40,6 +43,7 @@ const RowInput = ({ user }: any) => {
           total_vnd,
           user_id: id,
           email,
+          type: type !== 'BUY' ? 'SELL' : type
         },
       ])
       .select();
@@ -57,7 +61,7 @@ const RowInput = ({ user }: any) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-wrap md:flex-nowrap gap-4 text-sm max-w-5xl px-4 md:px-0"
+      className="flex flex-wrap md:flex-nowrap gap-4 text-sm max-w-5xl px-4 md:px-0 items-end"
     >
       <Controller
         name="dot_amount"
@@ -88,9 +92,12 @@ const RowInput = ({ user }: any) => {
             <input
               type="text"
               placeholder="DOT Price"
-              className={cn("input input-bordered input-sm w-full md:max-w-xs", {
-                "input-error": fieldState.invalid,
-              })}
+              className={cn(
+                "input input-bordered input-sm w-full md:max-w-xs",
+                {
+                  "input-error": fieldState.invalid,
+                }
+              )}
               {...field}
             />
           </div>
@@ -105,9 +112,12 @@ const RowInput = ({ user }: any) => {
             <input
               type="text"
               placeholder="USDT Amount"
-              className={cn("input input-bordered input-sm w-full md:max-w-xs", {
-                "input-error": fieldState.invalid,
-              })}
+              className={cn(
+                "input input-bordered input-sm w-full md:max-w-xs",
+                {
+                  "input-error": fieldState.invalid,
+                }
+              )}
               {...field}
             />
           </div>
@@ -122,9 +132,12 @@ const RowInput = ({ user }: any) => {
             <input
               type="text"
               placeholder="USDT Price"
-              className={cn("input input-bordered input-sm w-full md:max-w-xs", {
-                "input-error": fieldState.invalid,
-              })}
+              className={cn(
+                "input input-bordered input-sm w-full md:max-w-xs",
+                {
+                  "input-error": fieldState.invalid,
+                }
+              )}
               {...field}
             />
           </div>
@@ -139,11 +152,33 @@ const RowInput = ({ user }: any) => {
             <input
               type="text"
               placeholder="Total VND"
-              className={cn("input input-bordered input-sm w-full md:max-w-xs", {
-                "input-error": fieldState.invalid,
-              })}
+              className={cn(
+                "input input-bordered input-sm w-full md:max-w-xs",
+                {
+                  "input-error": fieldState.invalid,
+                }
+              )}
               {...field}
             />
+          </div>
+        )}
+      />
+      <Controller
+        name="type"
+        control={control}
+        render={({ field, fieldState }) => (
+          <div className="form-control">
+            <label className="label cursor-pointer flex items-center gap-2 flex-col">
+              <span className="label-text">
+                <span className="text-success">Buy</span>/Sell
+              </span>
+              <input
+                type="checkbox"
+                className={cn("toggle toggle-success")}
+                {...field}
+                defaultChecked
+              />
+            </label>
           </div>
         )}
       />

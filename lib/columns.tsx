@@ -1,4 +1,5 @@
 "use client";
+import { useMemo } from "react";
 import { ColumnDef } from "@tanstack/react-table";
 import { formatDate, formatCurrency } from "./format";
 
@@ -77,10 +78,10 @@ export const columnBuyTable: ColumnDef<Notes>[] = [
     header: ({ column }) => <span>Type</span>,
     cell: ({ row }) => {
       return row.original.type === "BUY" ? (
-        <div className="badge badge-success text-white">
+        <span className="badge badge-success">
           Buy
-        </div>
-      ) : <div className="badge badge-error text-white">Sell</div>;
+        </span>
+      ) : <span className="badge badge-error">Sell</span>;
     },
   },
   {
