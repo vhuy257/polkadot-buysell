@@ -2,8 +2,9 @@
 import { useMemo } from "react";
 import { ColumnDef } from "@tanstack/react-table";
 import { formatDate, formatCurrency } from "./format";
+import moment from "moment";
 
-export type Notes = {
+export type History = {
   id: number;
   dot_amount: number;
   dot_price: number;
@@ -11,10 +12,11 @@ export type Notes = {
   usdt_price: number;
   total_vnd: number;
   created_at: string;
+  updated_date: string;
   type: "BUY" | "SELL";
 };
 
-export const columnBuyTable: ColumnDef<Notes>[] = [
+export const columnBuyTable: ColumnDef<History>[] = [
   {
     accessorKey: "id",
     header: ({ column }) => <span>ID</span>,
@@ -78,15 +80,15 @@ export const columnBuyTable: ColumnDef<Notes>[] = [
     header: ({ column }) => <span>Type</span>,
     cell: ({ row }) => {
       return row.original.type === "BUY" ? (
-        <span className="badge badge-success">
-          Buy
-        </span>
-      ) : <span className="badge badge-error">Sell</span>;
+        <span className="badge badge-success">Buy</span>
+      ) : (
+        <span className="badge badge-error">Sell</span>
+      );
     },
   },
   {
     accessorKey: "created_at",
     header: ({ column }) => <span>Date</span>,
-    cell: ({ row }) => <span>{formatDate(row.original.created_at)}</span>,
+    cell: ({ row }) => <span>{row.original.updated_date ? moment(row.original.updated_date).format('DD/MM/YYYY') : formatDate(row.original.created_at)}</span>,
   },
 ];

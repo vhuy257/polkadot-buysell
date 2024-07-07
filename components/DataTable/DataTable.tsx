@@ -11,6 +11,7 @@ import {
     getSortedRowModel,
     useReactTable,
 } from "@tanstack/react-table";
+import { cn } from "@/lib/utils";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -99,21 +100,28 @@ export function DataTable<TData, TValue>({
             </thead>
             <tbody>
               {table?.getRowModel()?.rows?.length ? (
-                table?.getRowModel()?.rows.map((row: any) => (
-                  <tr
-                    key={row.id}
-                    data-state={row.getIsSelected() && "selected"}
-                  >
-                    {row.getVisibleCells().map((cell: any) => (
-                      <td key={cell.id} className="py-4">
-                        {flexRender(
-                          cell.column.columnDef.cell,
-                          cell.getContext()
-                        )}
-                      </td>
-                    ))}
-                  </tr>
-                ))
+                table?.getRowModel()?.rows.map((row: any) => {
+                  console.log(row)
+                  return (
+                    <tr
+                      key={row.id}
+                      data-state={row.getIsSelected() && "selected"}
+                      className={cn({
+                        'bg-green-100': row.original.type === 'BUY',
+                        'bg-red-100': row.original.type === 'SELL'
+                      })}
+                    >
+                      {row.getVisibleCells().map((cell: any) => (
+                        <td key={cell.id} className="py-4">
+                          {flexRender(
+                            cell.column.columnDef.cell,
+                            cell.getContext()
+                          )}
+                        </td>
+                      ))}
+                    </tr>
+                  );
+                })
               ) : (
                 <tr>
                   <td colSpan={columns.length} className="h-24 text-center">

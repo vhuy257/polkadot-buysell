@@ -6,7 +6,6 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs))
 }
 
-
 export const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
