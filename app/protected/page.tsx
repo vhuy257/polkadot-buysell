@@ -1,14 +1,22 @@
 import DeployButton from "@/components/DeployButton";
 import AuthButton from "@/components/AuthButton";
 import { createClient } from "@/utils/supabase/server";
-import FetchDataSteps from "@/components/tutorial/FetchDataSteps";
-import Header from "@/components/Header";
 import { redirect } from "next/navigation";
 import RowInput from "@/components/RowInput/RowInput";
 import TableList from "@/components/TableList";
+import { Suspense } from "react";
 
 export default async function ProtectedPage() {
   const supabase = createClient();
+  const { data: history_coin, error }: any = await supabase
+    .from("history_coin")
+    .select(
+      "dot_amount,dot_price,usdt_amount,usdt_price,total_vnd,type,created_at"
+    );
+
+  if (error) {
+    return error.message;
+  }
 
   const {
     data: { user },
@@ -34,7 +42,8 @@ export default async function ProtectedPage() {
       </div>
       <RowInput user={user} />
       <div className="w-full max-w-5xl">
-        <TableList />
+        <h1 className="py-2 text-lg font-semibold">History</h1>
+        <TableList history_coin={history_coin} />
       </div>
     </div>
   );
