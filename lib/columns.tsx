@@ -53,17 +53,17 @@ export const columnBuyTable: ColumnDef<History>[] = [
       ) : null;
     },
   },
-  {
-    accessorKey: "usdt_price",
-    header: ({ column }) => <span>USDT Price</span>,
-    cell: ({ row }) => {
-      return row.original.usdt_price ? (
-        <span className="flex text-green-500 items-center gap-2">
-          {formatCurrency(row.original.usdt_price)}
-        </span>
-      ) : null;
-    },
-  },
+  // {
+  //   accessorKey: "usdt_price",
+  //   header: ({ column }) => <span>USDT Price</span>,
+  //   cell: ({ row }) => {
+  //     return row.original.usdt_price ? (
+  //       <span className="flex text-green-500 items-center gap-2">
+  //         {formatCurrency(row.original.usdt_price)}
+  //       </span>
+  //     ) : null;
+  //   },
+  // },
   {
     accessorKey: "total_vnd",
     header: ({ column }) => <span>Total VND</span>,

@@ -23,6 +23,9 @@ const Chart = ({ data }: { data: DataChart[] }) => {
     },
     chart: {
       type: "column",
+      style: {
+        fontFamily: 'inherit'
+      }
     },
     title: {
       text: "",
@@ -42,17 +45,11 @@ const Chart = ({ data }: { data: DataChart[] }) => {
       accessibility: {
         description: "Countries",
       },
-      label: {
-        style: {
-          fontFamily: 'inherit',
-          fontSize: '1rem'
-        }
-      }
     },
     yAxis: {
       min: 0,
       title: {
-        text: "Buy",
+        text: "",
       },
     },
     tooltip: {
@@ -69,11 +66,6 @@ const Chart = ({ data }: { data: DataChart[] }) => {
         type: "column",
         name: "DOT Amount",
         data: data.map((m: any) => m.dot_amount),
-        label: {
-          style: {
-            fontFamily: 'inherit'
-          }
-        }
       },
       {
         type: "column",
@@ -85,24 +77,12 @@ const Chart = ({ data }: { data: DataChart[] }) => {
         name: "USDT Amount",
         data: data.map((m: any) => m.usdt_amount),
       },
-      {
-        type: "spline",
-        name: "Type",
-        data: data.map((m: any) => m.type),
-      },
+      // {
+      //   type: "spline",
+      //   name: "Type",
+      //   data: data.map((m: any) => m.type),
+      // },
     ],
-    legend: {
-      useHTML: true,
-      style: {
-        fontFamily: "inherit",
-      },
-      title: {
-        style: {
-          fontFamily: 'inherit',
-          fontSize: '5rem'
-        }
-      }
-    },
   };
   return (
     <HighchartsReact

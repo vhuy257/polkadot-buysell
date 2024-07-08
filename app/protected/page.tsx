@@ -40,16 +40,14 @@ export default async function ProtectedPage() {
           </div>
         </nav>
       </div>
-      <div className="flex flex-wrap md:flex-nowrap items-center gap-5 max-w-5xl">
+      <div className="flex flex-wrap md:flex-nowrap items-center gap-5 max-w-5xl w-full px-3 md:px-0 whitespace-nowrap">
         <div className="w-full md:w-1/3">
           <RowInput user={user} />
         </div>
-        <div className="w-full md:w-2/3">
-          <TableList history_coin={history_coin} />
-        </div>
+        <TableList history_coin={history_coin} />
       </div>
       <div className="w-full max-w-5xl">
-        <div className="bg-white rounded-md shadow-lg mb-10">
+        <div className="mb-10">
           <Chart data={history_coin} />
         </div>
       </div>

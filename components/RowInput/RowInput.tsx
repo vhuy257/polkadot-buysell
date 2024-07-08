@@ -91,7 +91,7 @@ const RowInput = ({ user }: any) => {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="flex flex-wrap gap-4 text-sm max-w-5xl px-4 md:px-0 items-end"
+      className="flex flex-wrap gap-4 text-sm max-w-5xl items-end"
     >
       <Controller
         name="dot_amount"
@@ -223,7 +223,7 @@ const RowInput = ({ user }: any) => {
           <div className="form-control">
             <label className="label cursor-pointer flex items-center gap-2 flex-col">
               <span className="label-text">
-                <span className="text-success">Buy</span>/Sell
+                Sell/<span className="text-success">Buy</span>
               </span>
               <input
                 type="checkbox"
@@ -243,7 +243,7 @@ const RowInput = ({ user }: any) => {
         </div>
       )}
       <button
-        className={cn("btn btn-sm w-full", {
+        className={cn("btn btn-primary btn-sm w-full", {
           "pointer-events-none": loading,
         })}
         type="submit"
