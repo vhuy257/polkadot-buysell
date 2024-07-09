@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import Highcharts from "highcharts";
+import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 import { formatDate } from "@/lib/format";
 import moment from "moment";
@@ -21,6 +21,8 @@ const Chart = ({ data }: { data: DataChart[] }) => {
     credits: {
       enabled: false,
     },
+    min: 0,
+    max: 4,
     chart: {
       type: "column",
       style: {
@@ -36,6 +38,7 @@ const Chart = ({ data }: { data: DataChart[] }) => {
       align: "left",
     },
     xAxis: {
+      lineColor: '#eee',
       categories: data.map((k: any) => {
         return k.updated_date
           ? moment(k.updated_date).format("DD/MM/YYYY")
