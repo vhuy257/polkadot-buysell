@@ -3,21 +3,13 @@ import AuthButton from "@/components/AuthButton";
 import { createClient } from "@/utils/supabase/server";
 import { redirect } from "next/navigation";
 import RowInput from "@/components/RowInput/RowInput";
-import TableList from "@/components/TableList";
+import TableComponent from "@/components/TableComponent";
 import Chart from "@/components/Chart/Chart";
+import { Suspense } from "react";
 
 export default async function ProtectedPage() {
   const supabase = createClient();
-  const { data: history_coin, error }: any = await supabase
-    .from("history_coin")
-    .select(
-      "dot_amount,dot_price,usdt_amount,usdt_price,total_vnd,type,created_at,updated_date"
-    );
-
-  if (error) {
-    return error.message;
-  }
-
+  
   const {
     data: { user },
   } = await supabase.auth.getUser();
@@ -44,11 +36,13 @@ export default async function ProtectedPage() {
         <div className="w-full md:w-1/3">
           <RowInput user={user} />
         </div>
-        <TableList history_coin={history_coin} />
+        <Suspense fallback={<div>Loading...</div>}>
+          <TableComponent />
+        </Suspense>
       </div>
       <div className="w-full max-w-5xl">
         <div className="mb-10">
-          <Chart data={history_coin} />
+          <Chart />
         </div>
       </div>
     </div>

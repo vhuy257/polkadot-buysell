@@ -4,6 +4,8 @@ import Highcharts from "highcharts/highstock";
 import HighchartsReact from "highcharts-react-official";
 import { formatDate } from "@/lib/format";
 import moment from "moment";
+import { useAtomValue } from "jotai";
+import { dataHistory } from "@/lib/atom";
 
 export type DataChart = {
   id: number;
@@ -16,7 +18,9 @@ export type DataChart = {
   type: "BUY" | "SELL";
 };
 
-const Chart = ({ data }: { data: DataChart[] }) => {
+const Chart = () => {
+  const data: any = useAtomValue(dataHistory);
+
   const options = {
     credits: {
       enabled: false,
