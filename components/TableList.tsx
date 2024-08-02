@@ -20,7 +20,7 @@ const TableList = ({ history_coin }: { history_coin: any[] }) => {
   }, [history_coin])
 
   return (
-    <div className="md:w-2/3 w-full">
+    <div className="md:w-3/4 w-full">
       <h1 className="pb-2 text-lg font-semibold px-3 md:px-0">History</h1>
       {historyData.length ? (
         <DataTable

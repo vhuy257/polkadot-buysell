@@ -8,6 +8,7 @@ import { Suspense } from "react";
 import RowInput from "@/components/RowInput/RowInput";
 import TableComponent from "@/components/TableComponent";
 import Chart from "@/components/Chart/Chart";
+import { Skeleton } from "@/components/ui/skeleton";
 
 export default async function Index() {
   const canInitSupabaseClient = () => {
@@ -42,10 +43,14 @@ export default async function Index() {
       </nav>
 
       <div className="flex flex-wrap md:flex-nowrap items-center gap-5 max-w-5xl w-full px-3 md:px-0 whitespace-nowrap">
-        <div className="w-full md:w-1/3">
+        <div className="w-full md:w-1/4">
           <RowInput user={user} />
         </div>
-        <Suspense fallback={<div>Loading...</div>}>
+        <Suspense
+          fallback={
+            <Skeleton className="bg-slate-100 w-full h-96 rounded-md" />
+          }
+        >
           <TableComponent />
         </Suspense>
       </div>

@@ -73,14 +73,14 @@ export function DataTable<TData, TValue>({
   }, [table, data]);
 
   return (
-    <div className="rounded-md border overflow-x-auto w-full">
-      <table className="table table-xs text-sm">
+    <div className="rounded-md overflow-x-auto w-full">
+      <table className="table table-sm text-sm">
         <thead className="bg-white py-2">
           {table.getHeaderGroups().map((headerGroup: any) => (
-            <tr key={headerGroup.id}>
+            <tr key={headerGroup.id} className="border-b-0">
               {headerGroup.headers.map((header: any) => {
                 return (
-                  <th key={header.id} colSpan={header.colSpan} className="py-2">
+                  <th key={header.id} colSpan={header.colSpan} className="py-2 text-sm text-black border-b-0">
                     {header.isPlaceholder
                       ? null
                       : flexRender(
@@ -93,21 +93,23 @@ export function DataTable<TData, TValue>({
             </tr>
           ))}
         </thead>
-        <tbody>
+        <tbody className="rounded-md">
           {table?.getRowModel()?.rows?.length ? (
             table?.getRowModel()?.rows.map((row: any) => {
-              console.log(row);
               return (
                 <tr
                   key={row.id}
                   data-state={row.getIsSelected() && "selected"}
-                  className={cn({
-                    "bg-green-100": row.original.type === "BUY",
-                    "bg-red-100": row.original.type === "SELL",
-                  })}
+                  className={cn(`border-none my-2`)}
                 >
                   {row.getVisibleCells().map((cell: any) => (
-                    <td key={cell.id} className="py-4">
+                    <td
+                      key={cell.id}
+                      className={cn("py-4 my-2", {
+                        "bg-green-100": row.original.type === "BUY",
+                        "bg-red-100": row.original.type === "SELL",
+                      })}
+                    >
                       {flexRender(
                         cell.column.columnDef.cell,
                         cell.getContext()

@@ -30,8 +30,8 @@ const Chart = () => {
     chart: {
       type: "column",
       style: {
-        fontFamily: 'inherit'
-      }
+        fontFamily: "inherit",
+      },
     },
     title: {
       text: "",
@@ -42,7 +42,7 @@ const Chart = () => {
       align: "left",
     },
     xAxis: {
-      lineColor: '#eee',
+      lineColor: "#eee",
       categories: data.map((k: any) => {
         return k.updated_date
           ? moment(k.updated_date).format("DD/MM/YYYY")
@@ -81,14 +81,9 @@ const Chart = () => {
       },
       {
         type: "spline",
-        name: "USDT Amount",
-        data: data.map((m: any) => m.usdt_amount),
+        name: "BUY",
+        data: data.filter((m: any) => m.type === "BUY"),
       },
-      // {
-      //   type: "spline",
-      //   name: "Type",
-      //   data: data.map((m: any) => m.type),
-      // },
     ],
   };
   return (
